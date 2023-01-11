@@ -45,6 +45,7 @@ Enabling this module allows the user to simulate network conditions by limiting 
 
 ## Filtering
 The Filtering section provides the ability to selectively apply the modules' functionalities to specific packets. This allows you to test the behavior of an application or network protocol under specific scenarios. The user can either choose from predefined presets or set their own filter using the WinDivert filter syntax. This powerful feature allows to create complex filters that include various filtering criteria such as protocol, direction, source, and destination addresses, among others. Additionally, this feature can be used to simulate more realistic network conditions by applying the modules' functionalities only to a subset of the network packets, rather than to all of them. This feature can also help you to isolate specific packets for further testing.
+For instructions on creating a personalized filter, refer to the WinDivert Filter Language documentation, which can be found at the following link: [WinDivert Filter Language](https://reqrypt.org/windivert-doc.html#filter_language)
 ![Filtering](https://github.com/rmdezz/Slip---Network-Simulation-Tool/blob/master/screenshots/Screenshot%202023-01-10%20213215.jpg)
 
 ## Screenshots
@@ -55,4 +56,9 @@ The Filtering section provides the ability to selectively apply the modules' fun
 ![Screenshot2_white](https://github.com/rmdezz/Slip---Network-Simulation-Tool/blob/master/screenshots/Screenshot%202023-01-10%20213315.jpg)
 ![Screenshot3](https://github.com/rmdezz/Slip---Network-Simulation-Tool/blob/master/screenshots/Screenshot%202023-01-10%20213141.jpg)
 
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
