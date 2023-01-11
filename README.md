@@ -7,7 +7,7 @@ Slip is an advanced Windows application made to simulate different network condi
 
 
 ## Installation
-To install Slip, first download the lastest release package and its dependencies (WinDivert.dll, libcrypto-3-x64.dll, PipeReader.dll and Slip.dll). Then, simply launch the C# .exe file. After the initial setup is complete, you'll be able to start taking advantage of Slip's powerful network simulation capabilities. For the best performance, make sure to have all dependencies installed and up-to-date.
+To install Slip, first download the lastest release package and its dependencies (WinDivert.dll, libcrypto-3-x64.dll, PipeReader.dll and Slip.dll). Then, simply launch the Slip.exe file. After the initial setup is complete, you'll be able to start taking advantage of Slip's powerful network simulation capabilities. For the best performance, make sure to have all dependencies installed and up-to-date.
 ```bash
 PipeReader.dll
 Slip.dll
