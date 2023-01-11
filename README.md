@@ -1,7 +1,3 @@
-
-![Logo](https://github.com/rmdezz/Slip---Network-Simulation-Tool/blob/master/logo_png.png)
-
-
 # Slip - Network Simulation Tool
 
 Slip is an advanced Windows application made to simulate different network conditions like latency, duplicate, shuffle, encrypt, drop, and traffic shaper bandwitdth on sending and receiving packets, with best-in-class accuracy. Using WinDivert library, Slip intercepts packets before they hit the network stack for real-time modifications according to the enabled modules chosen by the user. The graphical user interface is powered by a C# interface, while the backend code that governs the functionality of the application is written in a C/C++ dll. Furthermore, a console is available to monitor messages sent from the Slip dll through a named pipe. Slip boasts powerful and cutting-edge features sure to exceed any network simulation expectations.
