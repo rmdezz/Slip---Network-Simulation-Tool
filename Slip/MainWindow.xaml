@@ -1,0 +1,716 @@
+﻿<Window x:Class="Slip.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Slip"
+        mc:Ignorable="d"
+        Title="Slip" Height="500" Width="1020"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <!-- FF002D -->
+    <dragablz:TabablzControl x:Name="tabControl" BorderBrush="#D3D5CD" Background="#ECECEC" SelectedIndex="0" FixedHeaderCount="2">
+        <TabItem Header="MAIN">
+            <StackPanel>
+                <WrapPanel>
+                    <Grid Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40, 40, 0, 20">
+                        <Rectangle Width="80" Height="30" Fill="#D3D5CD" Effect="{DynamicResource MaterialDesignShadowDepth2}"/>
+                        <TextBlock Name="filterBanner" Text="FILTER" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF2F2C2F"></TextBlock>
+                    </Grid>
+
+                    <WrapPanel Margin="700, 0, 0, 0">
+                        <Label Margin="0, 30, 0, 0"
+                                           Content="Light"
+                                           FontSize="12"></Label>
+                        <ToggleButton x:Name="changeThemeButton"
+                                                  Margin="0, 30, 0, 0"
+                                                  Width="60"></ToggleButton>
+                        <Label Margin="0, 30, 0, 0" 
+                                           Content="Dark"
+                                           FontSize="12"></Label>
+                    </WrapPanel>
+                </WrapPanel>
+
+
+                <WrapPanel>
+                    <Label Content="Presets" 
+                                       FontSize="12" 
+                                       FontFamily="Segoe UI Semiligth"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left" 
+                                       Margin="40, 0, 0, 0"/>
+
+                    <ComboBox Name="presetsBox" VerticalAlignment="Center" HorizontalAlignment="Left" Width="120" FontSize="10" Margin="80, 0, 0, 0" SelectedIndex="0">
+                        <ComboBoxItem>All traffic</ComboBoxItem>
+                        <ComboBoxItem>Incoming Packets</ComboBoxItem>
+                        <ComboBoxItem>Outgoing Packets</ComboBoxItem>
+                        <ComboBoxItem>Local Network</ComboBoxItem>
+                        <ComboBoxItem>Specific IP</ComboBoxItem>
+                        <ComboBoxItem>Specific Port</ComboBoxItem>
+                        <ComboBoxItem>Specific IP and Port</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Name="ipLabel"
+                                       Content="IP:" 
+                                       FontSize="12" 
+                                       Width="40"
+                                       FontFamily="Segoe UI Semilight" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left" 
+                                       Margin="20, 0, 0, 0"
+                                       Visibility="Collapsed">
+                    </Label>
+
+                    <TextBox Name="ipTextbox" 
+                                         Text="" 
+                                         FontSize="12" 
+                                         Margin="0, 0, 10, 0"
+                                         VerticalAlignment="Center" 
+                                         HorizontalAlignment="Right" 
+                                         Width="80"
+                                         Visibility="Collapsed"/>
+
+                    <Label Name="portLabel" 
+                                       Content="Port:"
+                                       FontSize="12" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Width="50"
+                                       Margin="10, 0, 0, 0"
+                                       Visibility="Collapsed"></Label>
+
+                    <TextBox Name="portTextbox"
+                                         Width="40" 
+                                         FontSize="12" 
+                                         VerticalAlignment="Center" 
+                                         HorizontalAlignment="Right"
+                                         Margin="0, 0, 40, 0"
+                                         Visibility="Collapsed"></TextBox>
+
+                </WrapPanel>
+
+                <WrapPanel Margin="0, 15, 0, 0">
+                    <CheckBox Name="CustomCheckbox" Width="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          Content="Custom Filter"
+                                          FontSize="11"
+                                          FontFamily="Segoe UI Semilight"
+                                          Margin="40, 0, 0, 0"
+                                          IsChecked="False"></CheckBox>
+
+                    <TextBox Name="customFilter"
+                                         Width="200"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Left"
+                                         Margin="0, 0, 0, 10"
+                                         IsEnabled="False"></TextBox>
+
+                </WrapPanel>
+
+                <WrapPanel Margin="0, 15, 0, 0">
+                    <Button Name="startButton"
+                                        Margin="40, 0, 0, 0"
+                                        Content="Start"
+                                        Width="60"
+                                        Height="25"
+                                        FontSize="8"
+                                        Background="#D3D5CD"
+                                        BorderBrush="{x:Null}">
+                    </Button>
+                </WrapPanel>
+
+                <Grid Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40, 40, 0, 20">
+                    <Rectangle Width="80" Height="30" Fill="#D3D5CD" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                    </Rectangle>
+                    <TextBlock Name="statusBanner" Text="STATUS" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF2F2C2F"></TextBlock>
+                </Grid>
+
+                <WrapPanel>
+                    <Label Content="Is active?" 
+                                       FontSize="12" 
+                                       FontFamily="Segoe UI Semiligth"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left" 
+                                       Width="90"
+                                       Margin="40, 0, 0, 0"/>
+
+                    <Label 
+                                    Name="statusLabel"
+                                    Content = "DISABLED"
+                                    HorizontalAlignment = "Right"
+                                    Margin = "0,0,0,0"
+                                    VerticalAlignment = "Top"
+                                    Background = "{x:Null}"
+                                    FontWeight="Bold"
+                                    FontFamily = "Segoe UI"
+                                    FontSize="13"/>
+                </WrapPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="MODULES">
+            <StackPanel>
+                <!-- <Grid Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40">
+                                        <Rectangle Width="80" Height="30" Fill="Blue">
+                                        </Rectangle>
+                                        <TextBlock Text="MODULES" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                </Grid> -->
+                <Grid Height="30" Margin="10"></Grid>
+                <WrapPanel>
+                    <ToggleButton Name="lagToggle" Margin="40, 0, 0, 0"
+                                                  Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                  ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                                    Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                                    Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="Lag"
+                                               Width="100"
+                                               Margin="10, 0, 0, 0"
+                                               FontSize="12" 
+                                               ToolTip="Allows you to simulate network lag in your application by introducing a delay in the network packets.">
+                    </Label>
+
+                    <CheckBox Content="Incoming"
+                                                  Name="lagInbound"
+                                                  Margin="0, 0, 0, 0"
+                                                  FontSize="12"
+                                                  IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                                  Name="lagOutbound"
+                                                  Margin="40, 0, 0, 0"
+                                                  FontSize="12"
+                                                  IsChecked="True"></CheckBox>
+
+                    <Label Content="Delay:"
+                                               
+                                               Margin="40, 0, 0, 0"
+                                               Width="80"
+                                               Height="22"
+                                               FontSize="12"></Label>
+
+                    <Slider Name="lagSlider"
+                                                Minimum="0"
+                                                Maximum="2000"
+                                                Value="35"
+                                                Width="300"
+                                                Margin="0, 0, 0, 0"/>
+
+                    <Label Name="lagLabel"
+                                               Content="35 ms"
+                                               Margin="40, 0, 0, 0"
+                                               FontSize="12"></Label>
+
+                    <TextBox Name="lagTextbox"
+                                                 Margin="-40, 0, 0, 0"
+                                                 Width="60"
+                                                 Visibility="Hidden"></TextBox>
+
+                    <Button Name="lagChanceButton"
+                                                Content="Ok"
+                                                Width="50"
+                                                Height="25"
+                                                FontSize="11"
+                                                Background="Chocolate"
+                                                Visibility="Hidden"
+                                                Margin="10, 0, 0, 0"></Button>
+
+                </WrapPanel>
+
+                <WrapPanel>
+
+                    <ToggleButton Name="dropToggle" Margin="40, 20, 0, 0"
+                                                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                      ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                                        Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                                        Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="Drop"
+                                               Width="100"
+                                               ToolTip="Simulate packet loss in a network."
+                                               Margin="10, 20, 0, 0"
+                                               FontSize="12"></Label>
+
+                    <CheckBox Content="Incoming"
+                                                  Margin="0, 20, 0, 0"
+                                                  Name="dropInbound"
+                                                  FontSize="12"
+                                                  IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                                  Margin="40, 20, 0, 0"
+                                                  Name="dropOutbound"
+                                                  FontSize="12"
+                                                  IsChecked="True"></CheckBox>
+
+                    <Label Content="Chance:"
+                                               Margin="40, 20, 0, 0"
+                                               
+                                               Width="80"
+                                               FontSize="12"
+                                               Height="22"></Label>
+
+                    <Slider Name="dropChanceSlider" Minimum="0"
+                                                Maximum="100"
+                                                Value="50"
+                                                Width="120"
+                                                Margin="0, 20, 0, 0"></Slider>
+
+                    <Label Name="dropLabel"
+                                               Content="50 %"
+                                               Width="60"
+                                               Margin="40, 20, 0, 0"
+                                               FontSize="12"></Label>
+
+                    <TextBox Name="dropTextbox"
+                                             Margin="-40, 20, 0, 0"
+                                             Width="60"
+                                             Visibility="Collapsed"></TextBox>
+
+                    <Button Name="dropChanceButton"
+                                            Content="Ok"
+                                            Width="50"
+                                            Height="25"
+                                            FontSize="11"
+                                            Background="Chocolate"
+                                            Visibility="Collapsed"
+                                            Margin="10, 20, 0, 0"></Button>
+                </WrapPanel>
+
+                <WrapPanel>
+                    <ToggleButton Name="throttleToggle" Margin="40, 20, 0, 0"
+                                                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                      ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                                    Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                                    Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="Throttle"
+                                               Width="100"
+                                               ToolTip="Simulate network congestion."
+                                               Margin="10, 20, 0, 0"
+                                               FontSize="12"></Label>
+
+                    <CheckBox Content="Incoming"
+                                                  Margin="0, 20, 0, 0"
+                                                  Name="throttleInbound"
+                                                  FontSize="12"
+                                                  IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                                  Margin="40, 20, 0, 0"
+                                                  Name="throttleOutbound"
+                                                  FontSize="12"
+                                                  IsChecked="True"></CheckBox>
+
+                    <Label Content="Chance:"
+                                               Margin="40, 20, 0, 0"
+                                               
+                                               Width="80"
+                                               FontSize="12"
+                                               Height="22"></Label>
+
+                    <Slider Name="throttleChanceSlider" Minimum="0"
+                                                Maximum="100"
+                                                Value="50"
+                                                Width="120"
+                                                Margin="0, 20, 0, 0"></Slider>
+
+                    <Label Name="throttleLabel"
+                                               Content="50 %"
+                                               Width="60"
+                                               Margin="40, 20, 0, 0"
+                                               FontSize="12"></Label>
+
+                    <TextBox Name="throttleTextbox"
+                                                 Margin="-40, 20, 0, 0"
+                                                 Width="60"
+                                                 Visibility="Collapsed"></TextBox>
+
+                    <Button Name="throttleChanceButton"
+                                                Content="Ok"
+                                                Width="50"
+                                                Height="25"
+                                                FontSize="11"
+                                                Background="Chocolate"
+                                                Visibility="Collapsed"
+                                                Margin="10, 20, 0, 0"></Button>
+
+                    <Label Content="Delay:"
+                                           FontSize="11"
+                                           Height="25"
+                                           Width="50"
+                                           Margin="0, 20, 0, 0"></Label>
+
+                    <TextBox Name="delayTextbox"
+                                             Text="60"
+                                             Width="50"
+                                             Height="25"
+                                             Margin="0, 10, 0, 0"
+                                             FontSize="11"></TextBox>
+
+                    <Label Content="ms"
+                                           FontSize="11"
+                                           Margin="10, 20 ,0, 0"
+                                           Width="50"></Label>
+
+                    <CheckBox Name="throttleDropCheckbox"
+                                              Content="Drop?"
+                                              Width="50"
+                                              Margin="0, 20, 0, 0"></CheckBox>
+
+                </WrapPanel>
+
+                <WrapPanel>
+                    <ToggleButton Name="encryptToggle" Margin="40, 20, 0, 0"
+                                              Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                              ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                            Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                            Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="Encrypt"
+                                       Width="100"
+                                       ToolTip="Allows for network traffic to be encrypted before it is sent or received."
+                                       Margin="10, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <CheckBox Content="Incoming"
+                                          Margin="0, 20, 0, 0"
+                                          Name="encryptInbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                          Margin="40, 20, 0, 0"
+                                          Name="encryptOutbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <Label Content="Chance:"
+                                       Margin="40, 20, 0, 0"
+                                       
+                                       Width="80"
+                                       FontSize="12"
+                                       Height="22"></Label>
+
+                    <Slider Name="encryptChanceSlider"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        Value="50"
+                                        Width="120"
+                                        Margin="0, 20, 0, 0"></Slider>
+
+                    <Label Name="encryptLabel"
+                                       Content="50 %"
+                                       
+                                       Margin="40, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <TextBox Name="encryptTextbox"
+                                         Margin="-40, 20, 0, 0"
+                                         Width="60"
+                                         Visibility="Hidden"></TextBox>
+
+                    <Button Name="encryptChanceButton"
+                                        Content="Ok"
+                                        Width="50"
+                                        Height="25"
+                                        FontSize="11"
+                                        Background="Chocolate"
+                                        Visibility="Hidden"
+                                        Margin="10, 20, 0, 0"></Button>
+
+                </WrapPanel>
+
+                <WrapPanel>
+                    <ToggleButton Name="shuffleToggle" Margin="40, 20, 0, 0"
+                                              Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                              ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                            Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                            Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="Shuffle"
+                                       Width="100"
+                                       ToolTip="Reorders the packets in a stream of traffic in a random order."
+                                       Margin="10, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <CheckBox Content="Incoming"
+                                          Margin="0, 20, 0, 0"
+                                          Name="shuffleInbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                          Margin="40, 20, 0, 0"
+                                          Name="shuffleOutbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <Label Content="Chance:"
+                                       Margin="40, 20, 0, 0"
+                                       
+                                       Width="80"
+                                       FontSize="12"
+                                       Height="22"></Label>
+
+                    <Slider Name="shuffleChanceSlider"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        Value="50"
+                                        Width="120"
+                                        Margin="0, 20, 0, 0"></Slider>
+
+                    <Label Name="shuffleLabel"
+                                       Content="50 %"
+                                       Width="60"
+                                       
+                                       Margin="40, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <TextBox Name="shuffleTextbox"
+                                         Margin="-60, 20, 0, 0"
+                                         Width="60"
+                                         Visibility="Collapsed"></TextBox>
+
+                    <Button Name="shuffleChanceButton"
+                                        Content="Ok"
+                                        Width="50"
+                                        Height="25"
+                                        FontSize="11"
+                                        Background="Chocolate"
+                                        Visibility="Collapsed"
+                                        Margin="10, 20, 0, 0"></Button>
+
+                    <Label Name="shuffleMinPacketsLabel"
+                                       Content="Min. packets:"
+                                       FontSize="12"
+                                       Width="80"
+                                       Height="25"
+                                       Margin="0, 20, 0, 0"
+                                       ></Label>
+
+                    <xctk:IntegerUpDown Name="minPackets"
+                                                    Height="25"
+                                                    Minimum="0"
+                                                    Maximum="1000"
+                                                    Value="0"
+                                                    Margin="10, 20, 0, 0"></xctk:IntegerUpDown>
+
+                </WrapPanel>
+
+                <WrapPanel>
+                    <ToggleButton Name="duplicateToggle" Margin="40, 20, 0, 0"
+                                              Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                              ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                            Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                            Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="Duplicate"
+                                       Width="100"
+                                       ToolTip="Allows for duplicate packets to be sent on the network traffic."
+                                       Margin="10, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <CheckBox Content="Incoming"
+                                          Margin="0, 20, 0, 0"
+                                          Name="duplicateInbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                          Margin="40, 20, 0, 0"
+                                          Name="duplicateOutbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <Label Content="Chance:"
+                                       Margin="40, 20, 0, 0"
+                                       
+                                       Width="80"
+                                       FontSize="12"
+                                       Height="22"></Label>
+
+                    <Slider Name="duplicateChanceSlider"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        Value="50"
+                                        Width="120"
+                                        Margin="0, 20, 0, 0"></Slider>
+
+                    <Label Name="duplicateLabel"
+                                       Content="50 %"
+                                       Width="60"
+                                       
+                                       Margin="40, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <TextBox Name="duplicateTextbox"
+                                         Margin="-60, 20, 0, 0"
+                                         Width="60"
+                                         Visibility="Collapsed"></TextBox>
+
+                    <Button Name="duplicateChanceButton"
+                                        Content="Ok"
+                                        Width="50"
+                                        Height="25"
+                                        FontSize="11"
+                                        Background="Chocolate"
+                                        Visibility="Collapsed"
+                                        Margin="10, 20, 0, 0"></Button>
+
+                    <Label Content="Num. copies"
+                                       FontSize="12"
+                                       Width="80"
+                                       
+                                       Margin="0, 20, 0, 0"></Label>
+
+                    <xctk:IntegerUpDown Name="numCopies"
+                                                    Height="25"
+                                                    Minimum="0"
+                                                    Maximum="1000"
+                                                    Value="0"
+                                                    Margin="10, 20, 0, 0"></xctk:IntegerUpDown>
+                </WrapPanel>
+
+                <WrapPanel>
+                    <ToggleButton Name="trafficShaperToggle" Margin="40, 20, 0, 0"
+                                              Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                              ToolTip="MaterialDesignSwitchToggleButton with Custom Track Background">
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <SolidColorBrush
+                                            Color="Green" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                            <SolidColorBrush
+                                            Color="Red" />
+                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    </ToggleButton>
+
+                    <Label Content="TrafficShaper"
+                                       Width="100"
+                                       Margin="10, 20, 0, 0"
+                                       ToolTip="Allows you to control and limit the amount of bandwidth that is used by the network traffic."
+                                       FontSize="12"></Label>
+
+                    <CheckBox Content="Incoming"
+                                          Margin="0, 20, 0, 0"
+                                          Name="trafficShaperInbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <CheckBox Content="Outgoing"
+                                          Margin="40, 20, 0, 0"
+                                          Name="trafficShaperOutbound"
+                                          FontSize="12"
+                                          IsChecked="True"></CheckBox>
+
+                    <Label Content="Chance:"
+                                       Margin="40, 20, 0, 0"
+                                       Width="80"
+                                       FontSize="12"
+                                       Height="22"></Label>
+
+                    <Slider Name="trafficShaperChanceSlider"
+                                        Minimum="0"
+                                        Maximum="100"
+                                        Value="50"
+                                        Width="120"
+                                        Margin="0, 20, 0, 0"></Slider>
+
+                    <Label Name="trafficShaperLabel"
+                                       Content="50 %"
+                                       Width="60"
+                                       Margin="40, 20, 0, 0"
+                                       FontSize="12"></Label>
+
+                    <TextBox Name="trafficShaperTextbox"
+                                         Margin="-60, 20, 0, 0"
+                                         Width="60"
+                                         Visibility="Collapsed"></TextBox>
+
+                    <Button Name="tShaperChanceButton"
+                                        Content="Ok"
+                                        Width="50"
+                                        Height="25"
+                                        FontSize="11"
+                                        Background="Chocolate"
+                                        Visibility="Collapsed"
+                                        Margin="10, 20, 0, 0"></Button>
+
+                    <Label Content="Speed limit:"
+                                       Width="80"
+                                       Height="25"
+                                       Margin="0, 20, 0, 0"
+                                       FontSize="11"></Label>
+
+                    <TextBox Name="speedLimitTextbox"
+                                         Text="10"
+                                         Width="50"
+                                         Height="25"
+                                         Margin="0, 10, 0, 0"
+                                         FontSize="11"></TextBox>
+
+                    <Label Content="MB/s"
+                                       FontSize="11"
+                                       Margin="10, 20 ,0, 0"
+                                       Width="50"></Label>
+
+                </WrapPanel>
+
+            </StackPanel>
+        </TabItem>
+    </dragablz:TabablzControl>
+
+</Window>
